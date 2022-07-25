@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="3dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_nama_mhsantri"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="5.7"
+                android:gravity="left|center"
+                android:padding="10dp"
+                android:text="nama"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_jk_mhs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5.4"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Jenis Kelamin"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_status_mhs"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="5.5"
+                android:gravity="right|center"
+                android:padding="10dp"
+                android:text="Mahasiswa"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="6.3"
+                android:gravity="right"
+                android:paddingVertical="10dp"
+                android:paddingEnd="10dp"
+                android:text="000"
+                android:textColor="@color/black">
+
+                <TextView
+                    android:id="@+id/bt_detail_mhs"
+                    android:layout_width="52dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="6dp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/background_tombol"
+                    android:text="Detail"
+                    android:textColor="@android:color/white"
+                    android:textSize="9sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+

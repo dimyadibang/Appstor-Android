@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeToRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.DetailMhsActivity">
+
+    <ScrollView
+
+        android:id="@+id/activity_detail_mhs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+
+        tools:ignore="ScrollViewCount">
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:text=" Dashbord "
+                android:textColor="#027508"
+                android:textSize="30sp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!-- A CardView that contains a TextView -->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    app:contentPadding="10dp"
+
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_tombol"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="20dp"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Nama"
+                        android:textStyle="bold"
+                        android:textColor="#ffff"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/nama_mhs_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Abdul "
+                        android:textColor="#333333"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="75dp"
+                        android:background="@drawable/background_tombol"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="20dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Jenis Kelamin "
+                        android:textStyle="bold"
+                        android:textColor="#ffff"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/jk_mhs_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="110dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Laki-Laki "
+                        android:textColor="#333333"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="135dp"
+                        android:background="@drawable/background_tombol"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="20dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Status "
+                        android:textStyle="bold"
+                        android:textColor="#ffff"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/status_mhs_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|top"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="170dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Mahasiswa "
+                        android:textColor="#333333"
+                        android:textSize="15sp" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="sans-serif"
+                        android:layout_gravity="right|top"
+                        android:gravity="center|center"
+                        android:text=" Halaman Setoran"
+                        android:textColor="#333333"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/count_setoran_mhsantri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="40dp"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="sans-serif"
+                        android:layout_gravity="right|top"
+                        android:gravity="center|center"
+                        android:text=" - "
+                        android:textColor="#333333"
+                        android:textSize="60sp"
+                        android:textStyle="bold"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/move_activity_list_kitab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:paddingHorizontal="15dp"
+                        android:layout_gravity="right|bottom"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/background_tombol"
+                        android:text="Tambah Setoran"
+                        android:textColor="@android:color/white"
+                        android:textSize="11sp"
+                        tools:ignore="RtlHardcoded" />
+                </androidx.cardview.widget.CardView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="-7dp"
+                android:textAlignment="center"
+                android:background="@drawable/background_tombol"
+                android:text=" List Setoran Baru "
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:progressDrawable="@drawable/greenprogress"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_setoran_mhs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_setoran_mhs"/>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Appstor</string>
+
+    <string-array name="nilai">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login_username">login_username</string>
+    <string name="login_password">login_password</string>
+    <string name="login_button">login_button</string>
+    <string name="loading_text">loading_text</string>
+</resources>
