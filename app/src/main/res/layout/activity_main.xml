@@ -53,7 +53,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="16dp"
                 android:src="@drawable/img_fotokosong"
                 app:civ_border_color="#1F4A00"
                 app:civ_border_width="2dp"

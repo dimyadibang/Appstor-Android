@@ -1,34 +1,34 @@
 package com.mahadalynj.appstor.ui.main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.mahadalynj.appstor.R
 import com.mahadalynj.appstor.api.ApiClient
-import com.mahadalynj.appstor.data.model.MainModel
-import com.mahadalynj.appstor.data.model.MhSantriModel
-import com.mahadalynj.appstor.data.model.UstadzModel
+import com.mahadalynj.appstor.data.model.*
+import com.mahadalynj.appstor.data.profile.UserModel
+import com.mahadalynj.appstor.data.profile.helper.Constant
+import com.mahadalynj.appstor.data.profile.helper.PreferencesHelper
 import com.mahadalynj.appstor.ui.adapter.MainAdapter
-import com.mahadalynj.appstor.ui.login.LoginActivity
 import com.mahadalynj.appstor.ui.utility.lightStatusBar
-import com.mahadalynj.appstor.ui.utility.setfullScreen
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.System.load
 
 class MainActivity : AppCompatActivity(),View.OnClickListener  {
     private val TAG: String = "MainActivity"
 
     private lateinit var apiClient: ApiClient
 
-
+    private lateinit var sessionManager: PreferencesHelper
     private lateinit var mainAdapter: MainAdapter
 
 
@@ -37,14 +37,16 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         apiClient = ApiClient()
-
+        PreferencesHelper(this)
         lightStatusBar(window)
         //setfullScreen(window)
+        sessionManager = PreferencesHelper(this)
 
         setupRecyclerView()
         getDataFromApi()
         getCoutUst()
         getCoutMhs()
+        getUstadUser()
 
 
         move_activity_list_ust.setOnClickListener(this)
@@ -116,12 +118,46 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
                     refreshApp()
                     showLoading(false)
                     if (response.isSuccessful) {
-                        count_ust.text = response.body()?.count.toString()
+                        count_ust.text = response.body()?.count.toString().trim()
                     }
                 }
             })
     }
+    private fun getUstadUser(){
+        showLoading(true)
+        val user = sessionManager.getString(Constant.PREF_IS_ID)
+        val parameters= HashMap<String, String>()
+        parameters["user"] = "$user"
+        apiClient.getApiService(this).datausta(parameters)
+            .enqueue(object : Callback<UserModel>{
+                override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
+                    val data = response.body()?.datauser?.let { ArrayList(it) }
+                    val a = data?.get(0)
 
+                    Log.e("email", data?.size.toString())
+                    Log.e("a", a?.id.toString())
+                    Log.e("a", a?.name.toString())
+                    Log.e("a", a?.phone.toString())
+                    Log.e("a", a?.email.toString())
+                    val img = a?.profile_pic.toString()
+                    Picasso.get()
+                        .load("$img")
+                        .fit()
+                        .centerCrop()
+                        .into(icon_profile)
+
+
+
+
+                }
+
+                override fun onFailure(call: Call<UserModel>, t: Throwable) {
+                    Log.e("Error", t.message.toString())
+                }
+
+            })
+
+    }
 
     private fun setupRecyclerView() {
         mainAdapter = MainAdapter(arrayListOf())

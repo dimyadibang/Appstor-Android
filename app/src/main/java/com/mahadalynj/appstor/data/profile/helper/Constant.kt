@@ -11,5 +11,9 @@ class Constant {
         const val PREF_IS_TOKEN = "PREF_IS_TOKEN"
         val PREF_IS_EMAIL = "PREF_IS_EMAIL"
 
+        const val ID_USTAD_USER = "ID_USTAD_USER"
+
+
+
     }
 }

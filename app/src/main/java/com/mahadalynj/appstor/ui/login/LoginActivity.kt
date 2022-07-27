@@ -3,11 +3,15 @@ package com.mahadalynj.appstor.ui.login
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -16,6 +20,7 @@ import com.mahadalynj.appstor.api.ApiClient
 import com.mahadalynj.appstor.data.profile.UserRequest
 import com.mahadalynj.appstor.data.profile.UserResponse
 import com.mahadalynj.appstor.data.profile.helper.Constant
+import com.mahadalynj.appstor.data.profile.helper.Constant.Companion.PREF_IS_ID
 import com.mahadalynj.appstor.data.profile.helper.Constant.Companion.PREF_IS_LOGIN
 import com.mahadalynj.appstor.data.profile.helper.Constant.Companion.PREF_IS_TOKEN
 import com.mahadalynj.appstor.data.profile.helper.PreferencesHelper
@@ -33,21 +38,17 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var sessionManager: PreferencesHelper
     lateinit var apiClient: ApiClient
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_login)
+
         PreferencesHelper(this)
-
         lightStatusBar(window)
-
-
-
-
         apiClient = ApiClient()
         sessionManager = PreferencesHelper(this)
         initAction()
-
 
 
     }
@@ -89,8 +90,9 @@ class LoginActivity : AppCompatActivity() {
                             val loginResponse = response.body()
 
 
-                            if (loginResponse?.token?.isNotEmpty() == true) {
+                            if ( loginResponse?.token?.isNotEmpty() == true) {
                                 sessionManager.put(PREF_IS_TOKEN,response.body()?.token.toString())
+                                sessionManager.put(PREF_IS_ID,response.body()?.userId.toString())
                                 sessionManager.put(PREF_IS_LOGIN,true)
                                 Log.i("token", loginResponse.token.toString().trim())
                                 Log.i("id", loginResponse.userId.toString())

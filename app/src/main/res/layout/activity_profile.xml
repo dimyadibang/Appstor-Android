@@ -22,6 +22,15 @@
         tools:ignore="MissingConstraints" />
 
 
+    <Button
+        android:id="@+id/pickImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick Image"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="-13dp" />
+
     <androidx.cardview.widget.CardView
 
         android:id="@+id/cardView"
@@ -48,73 +57,74 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+            <EditText
                 android:id="@+id/id_nama_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="60dp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/background_text"
+                android:background="@drawable/background_form"
                 android:padding="20dp"
                 android:text="Nama"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="#171717"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.225"
                 tools:layout_editor_absoluteX="10dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/id_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/background_text"
+                android:background="@drawable/background_form"
                 android:padding="20dp"
                 android:text="Email"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="#171717"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/id_nama_user"
                 app:layout_constraintVertical_bias="0.057"
                 tools:layout_editor_absoluteX="10dp" />
 
-            <TextView
-                android:id="@+id/id_token"
+            <EditText
+                android:id="@+id/id_tlpn_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/background_text"
+                android:background="@drawable/background_form"
                 android:padding="20dp"
-                android:text="Token"
+                android:text="Nomer Telelpon"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                android:textColor="#171717"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/id_email"
                 app:layout_constraintVertical_bias="0.106"
                 tools:layout_editor_absoluteX="10dp" />
 
-            <TextView
-                android:id="@+id/id_token2"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/save_update_user"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/background_text"
-                android:padding="20dp"
-                android:text="Token"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/id_email"
-                app:layout_constraintVertical_bias="0.106"
-                tools:layout_editor_absoluteX="10dp" />
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/background_tombol"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="16dp"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/white"/>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
 
@@ -130,6 +140,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.351" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickImage"
+        android:src="@drawable/img_fotokosong" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
