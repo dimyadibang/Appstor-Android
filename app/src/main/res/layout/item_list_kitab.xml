@@ -4,149 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingVertical="1dp"
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="3dp"
+        android:paddingVertical="10dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
-        app:cardElevation="5dp"
-        android:layout_gravity="center">
-
+        app:cardElevation="5dp">
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <TextView
+                android:id="@+id/tv_halaman_kitab"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:paddingVertical="10dp"
+                android:layout_weight="10"
+                android:background="#F6F6F6"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="--"
+                android:textColor="#006504"
+                android:textSize="17sp" />
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_awalan_kitab"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingVertical="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="4.8"
+                android:gravity="right|center"
+                android:padding="5dp"
+                android:paddingEnd="10dp"
+                android:text="بسم الله الرحمن الرحيم"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-                    <TextView
-                        android:id="@+id/tv_halaman_kitab"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_weight="7.7"
-                        android:background="#F6F6F6"
-                        android:gravity="center"
-                        android:text="20"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/tv_bab_kitab"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="6.2"
-                        android:gravity="center|right"
-                        android:padding="5dp"
-                        android:text="كتاب أحكام الصيد والذبائح والأطعمة"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/tv_fashol_kitab"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="6.1"
-                        android:background="#F6F6F6"
-                        android:gravity="right|center"
-                        android:padding="5dp"
-                        android:text="فصل: في أحكام العدة وأنواع المعتدة"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-
-                    <TextView
-                        android:id="@+id/tv_awalan_kitab"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="6.5"
-                        android:gravity="right|center"
-                        android:padding="5dp"
-                        android:text="بسم الله الرحمن الرحيم"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="7"
-                        android:background="#F6F6F6"
-                        android:textColor="@color/black">
-
-                        <TextView
-                            android:id="@+id/bt_detail_ust"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|right"
-                            android:layout_marginEnd="3dp"
-                            android:background="@drawable/background_tombol"
-                            android:paddingVertical="6dp"
-                            android:text="Detail"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/white"
-                            android:textSize="9sp"
-                            tools:ignore="RtlHardcoded" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FDF1CC"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/isi_kitab"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center|right"
-                    android:text="بسم الله الرحمن الرحيم"
-                    android:textColor="#000" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="7.2"
+                android:layout_weight="9.5"
                 android:background="#F6F6F6"
-                android:orientation="vertical"
+                android:paddingVertical="10dp"
+                android:gravity="center"
                 android:textColor="@color/black">
 
                 <Button
-                    android:id="@+id/btn_setorkan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/bt_detail_kitab"
+                    android:layout_width="56dp"
+                    android:layout_height="27dp"
                     android:layout_gravity="center"
                     android:background="@drawable/background_tombol"
-                    android:paddingVertical="6dp"
-                    android:paddingHorizontal="10dp"
-                    android:text="Setorkan"
-                    android:gravity="center"
-                    android:textAlignment="center"
+                    android:text="Detail"
+                    android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="9sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
+
     </androidx.cardview.widget.CardView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

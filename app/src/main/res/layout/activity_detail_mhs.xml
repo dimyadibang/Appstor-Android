@@ -27,13 +27,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif"
                 android:textStyle="bold"
-                android:text=" Dashbord "
+                android:text=" Detail Mahasantri "
                 android:textColor="#027508"
-                android:textSize="30sp" />
+                android:textSize="27sp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                         android:layout_marginStart="40dp"
                         android:layout_marginTop="50dp"
                         android:fontFamily="sans-serif"
-                        android:text="Abdul "
+                        android:text="- - - - - - - - - - - "
                         android:textColor="#333333"
                         android:textSize="15sp" />
 
@@ -102,7 +102,7 @@
                         android:layout_marginStart="40dp"
                         android:layout_marginTop="110dp"
                         android:fontFamily="sans-serif"
-                        android:text="Laki-Laki "
+                        android:text="- - - - - - - - - - -  "
                         android:textColor="#333333"
                         android:textSize="15sp" />
 
@@ -130,7 +130,7 @@
                         android:layout_marginTop="170dp"
                         android:layout_marginBottom="20dp"
                         android:fontFamily="sans-serif"
-                        android:text="Mahasiswa "
+                        android:text="- - - - - - - - - - -  "
                         android:textColor="#333333"
                         android:textSize="15sp" />
 
@@ -182,8 +182,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_marginStart="15dp"
+                android:paddingVertical="7dp"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="17dp"
                 android:layout_marginTop="-7dp"
                 android:textAlignment="center"
                 android:background="@drawable/background_tombol"
@@ -203,6 +204,8 @@
                 android:id="@+id/rv_setoran_mhs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbarSize="0dp"
                 tools:listitem="@layout/item_setoran_mhs"/>
 
 

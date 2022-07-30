@@ -22,76 +22,60 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="170dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
+                app:cardElevation="7dp"
+                app:cardBackgroundColor="#F6FFCF">
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:visibility="visible"
-                    android:background="@drawable/ustad"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start|bottom"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="start"
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="16dp"
                     android:paddingHorizontal="5dp"
-                    android:background="#FF9800"
                     android:fontFamily="sans-serif"
-                    android:text="Data Ustad "
-                    android:textColor="#fff"
-                    android:textSize="25sp" />
+                    android:text="List Data Ustad "
+                    android:textStyle="bold"
+                    android:textColor="#017C06"
+                    android:textSize="27sp" />
 
                 <TextView
                     android:id="@+id/count_list_ust"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="30dp"
                     android:layout_marginBottom="16dp"
-                    android:background="#FF9800"
                     android:paddingHorizontal="10dp"
                     android:text="--"
                     android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="30sp"
+                    android:textColor="#2B712E"
+                    android:textSize="50sp"
                     tools:ignore="RtlCompat,RtlHardcoded,SmallSp" />
             </androidx.cardview.widget.CardView>
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="-7dp"
-                android:textAlignment="center"
-                android:background="@drawable/background_tombol"
-                android:text=" List Data Ustad "
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/progressBar2"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_gravity="center"
-                android:indeterminate="true"
-                android:progressDrawable="@drawable/greenprogress"/>
+                android:indeterminate="true"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_ust"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbarSize="0dp"
+                android:layout_marginHorizontal="10dp"
                 tools:listitem="@layout/item_list_ust"/>
-
         </androidx.appcompat.widget.LinearLayoutCompat>
-
     </ScrollView>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -13,6 +13,9 @@ class Constant {
 
         const val ID_USTAD_USER = "ID_USTAD_USER"
 
+        const val ID_MAHASANTRI = "ID_MAHASANTRI"
+        const val ID_KITAB = "ID_KITAB"
+
 
 
     }

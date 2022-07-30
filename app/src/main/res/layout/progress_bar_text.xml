@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#CCFFFFFF"
+    android:background="#A9FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingDefaultResource">
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:gravity="center"
-        android:textColor="#2196f3"
+        android:textColor="#007105"
         android:layout_marginTop="8dp"
-        android:text="@string/loading_text"/>
+        android:text="tunggu ya :)"/>
 </LinearLayout>

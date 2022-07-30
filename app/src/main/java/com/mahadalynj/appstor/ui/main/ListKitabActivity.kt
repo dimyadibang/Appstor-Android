@@ -35,43 +35,13 @@ class ListKitabActivity : AppCompatActivity() {
         apiClient = ApiClient()
 
         lightStatusBar(window)
-        setfullScreen(window)
+        //setfullScreen(window)
 
         setupRecyclerView()
         getDataFromApi()
 
     }
 
-
-
-
-    /*private fun createPost() {
-        val idMhs = intent.getStringExtra("id_mhs")
-        val reg = PostSetoran()
-        reg.mahasantri = idMhs
-        reg.kitab = result.id
-        ApiClient.endpoint.postSetoran(
-            reg
-        ).enqueue(object : Callback<SetoranModel> {
-            override fun onResponse(
-                call: Call<SetoranModel>,
-                response: Response<SetoranModel>
-            ) {
-                val toast = Toast.makeText(applicationContext, "Setoran $idMhs " +
-                        "Pada halaman ${result.halaman}" +
-                        "Kalimamat ${result.awalan}" +
-                        "telah Sukses", Toast.LENGTH_SHORT)
-                toast.show()
-            }
-
-            override fun onFailure(call: Call<SetoranModel>, t: Throwable) {
-                val toast = Toast.makeText(applicationContext, "Gagal", Toast.LENGTH_SHORT)
-                toast.show()
-            }
-
-        })
-    }
-*/
 
     private fun setupRecyclerView(){
         val idMhs = intent.getStringExtra("id_mhs")
@@ -144,7 +114,8 @@ class ListKitabActivity : AppCompatActivity() {
 
     private fun refreshApp() {
         swipeToRefresh.setOnRefreshListener {
-            Toast.makeText(this, "Sudah di refresh", Toast.LENGTH_SHORT).show()
+            setupRecyclerView()
+            getDataFromApi()
             swipeToRefresh.isRefreshing = false
         }
     }

@@ -27,6 +27,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="5"
                 android:gravity="left|center"
+                android:textStyle="bold"
                 android:padding="10dp"
                 android:text="nama"
                 android:textColor="@color/black" />

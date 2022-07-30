@@ -16,16 +16,11 @@ class DetailUstActivity : AppCompatActivity() {
         val intentName = intent.getStringExtra("intent_name")
         val intentEmail = intent.getStringExtra("intent_email")
         val intentPhone = intent.getStringExtra("intent_phone")
-        val intentImage = intent.getStringExtra("intent_image")
 
         lightStatusBar(window)
-        setfullScreen(window)
+        //setfullScreen(window)
 
-        Glide.with(this)
-            .load(intentImage )
-            .placeholder(R.drawable.img_fotokosong)
-            .error(R.drawable.img_fotokosong)
-            .into(image_photo_ust)
+
         nama_ust_detail.text = intentName
         email_ust_detail.text = intentEmail
         phone_ust_detail.text = intentPhone

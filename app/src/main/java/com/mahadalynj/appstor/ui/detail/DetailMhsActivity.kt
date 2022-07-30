@@ -1,27 +1,29 @@
 package com.mahadalynj.appstor.ui.detail
 
+import android.app.AlertDialog
 import android.content.ContentValues.TAG
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahadalynj.appstor.R
 import com.mahadalynj.appstor.api.ApiClient
+import com.mahadalynj.appstor.data.model.DetailMhsantriModel
 import com.mahadalynj.appstor.data.model.SetoranModel
-import com.mahadalynj.appstor.data.profile.helper.PreferencesHelper
 import com.mahadalynj.appstor.ui.adapter.SetoranMhsAdapter
 import com.mahadalynj.appstor.ui.main.ListKitabActivity
+import com.mahadalynj.appstor.ui.utility.lightStatusBar
 import kotlinx.android.synthetic.main.activity_detail_mhs.*
-import kotlinx.android.synthetic.main.activity_detail_mhs.progressBar
-import kotlinx.android.synthetic.main.activity_detail_mhs.swipeToRefresh
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailMhsActivity : AppCompatActivity(),View.OnClickListener {
+class DetailMhsActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var apiClient: ApiClient
 
@@ -31,14 +33,12 @@ class DetailMhsActivity : AppCompatActivity(),View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_mhs)
         apiClient = ApiClient()
-        val name = intent.getStringExtra("intent_name")
-        val jk = intent.getStringExtra("intent_jk")
-        val status = intent.getStringExtra("intent_status")
-        nama_mhs_detail.text = name
-        jk_mhs_detail.text = jk
-        status_mhs_detail.text = status
+
+        lightStatusBar(window)
+        //setfullScreen(window)
         getDataFromApi()
         setupRecyclerView()
+        getMhsDetail()
 
 
 
@@ -52,8 +52,8 @@ class DetailMhsActivity : AppCompatActivity(),View.OnClickListener {
             R.id.move_activity_list_kitab -> {
                 startActivity(
                     Intent(this@DetailMhsActivity, ListKitabActivity::class.java)
-                        .putExtra("id_mhs", idMhs )
-                        .putExtra("id_nama_mhs", name )
+                        .putExtra("id_mhs", idMhs)
+                        .putExtra("id_nama_mhs", name)
                 )
 
             }
@@ -61,17 +61,85 @@ class DetailMhsActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun setupRecyclerView() {
-        setoranAdapter = SetoranMhsAdapter(arrayListOf())
+        setoranAdapter =
+            SetoranMhsAdapter(arrayListOf(), object : SetoranMhsAdapter.OnAdapterListener {
+                override fun onClick(results: SetoranModel.Result) {
+                    val a = AlertDialog.Builder(this@DetailMhsActivity)
+                    a.setTitle("Setoran Ini")
+                    a.setMessage("Apakah Ingin dihapus?")
+                    a.setPositiveButton("ya") { _: DialogInterface?, _: Int ->
+                        val id = results.id
+                        showLoading(false)
+                        apiClient.getApiService(applicationContext).deletesetoranmhs(id)
+                            .enqueue(object : Callback<Int> {
+                                override fun onFailure(call: Call<Int>, t: Throwable) {
+                                    printLog(t.toString())
+                                    showLoading(false)
+                                    refreshApp()
+                                }
+
+                                override fun onResponse(
+                                    call: Call<Int>,response: Response<Int>) {
+                                    refreshApp()
+                                    showLoading(false)
+                                    getDataFromApi()
+                                    setupRecyclerView()
+                                    getMhsDetail()
+                                    Toast.makeText(applicationContext, "Setoran Sudah ter-hapus", Toast.LENGTH_SHORT).show()
+                                    Log.i("Sukses",response.toString())
+                                }
+                            })
+                    }
+                    a.setNegativeButton("Tidak") { _: DialogInterface?, _: Int ->
+                        Toast.makeText(applicationContext, "BATAL", Toast.LENGTH_SHORT).show()
+                    }
+                    a.show()
+
+
+
+
+                }
+            }
+            )
         rv_setoran_mhs.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = setoranAdapter
         }
     }
-    private fun getDataFromApi() {
-        val id = intent.getStringExtra("intent_id")
+
+    private fun getMhsDetail() {
+        val id = intent.getStringExtra("intent_ids")
+        Log.i("val id", id.toString())
         showLoading(true)
         refreshApp()
-        val parameters= HashMap<String, String>()
+        apiClient.getApiService(this).datadetailmhsantri(id.toString().toInt())
+            .enqueue(object : Callback<DetailMhsantriModel> {
+                override fun onFailure(call: Call<DetailMhsantriModel>, t: Throwable) {
+                    printLog(t.toString())
+                    showLoading(false)
+                    refreshApp()
+                }
+
+                override fun onResponse(
+                    call: Call<DetailMhsantriModel>,
+                    response: Response<DetailMhsantriModel>
+                ) {
+                    refreshApp()
+                    showLoading(false)
+                    Log.i("Sukses", response.toString())
+                    val data = response.body()
+                    nama_mhs_detail.text = data?.name.toString()
+                    jk_mhs_detail.text = data?.jk.toString()
+                    status_mhs_detail.text = data?.status.toString()
+                }
+            })
+    }
+
+    private fun getDataFromApi() {
+        val id = intent.getStringExtra("intent_ids")
+        showLoading(true)
+        refreshApp()
+        val parameters = HashMap<String, String>()
         parameters["mahasantri"] = "$id"
         apiClient.getApiService(this).datasetoranmhs(parameters)
             .enqueue(object : Callback<SetoranModel> {
@@ -82,8 +150,7 @@ class DetailMhsActivity : AppCompatActivity(),View.OnClickListener {
                 }
 
                 override fun onResponse(
-                    call: Call<SetoranModel>,
-                    response: Response<SetoranModel>
+                    call: Call<SetoranModel>, response: Response<SetoranModel>
                 ) {
                     refreshApp()
                     showLoading(false)
@@ -98,6 +165,7 @@ class DetailMhsActivity : AppCompatActivity(),View.OnClickListener {
                 }
             })
     }
+
 
     private fun printLog(message: String) {
         Log.d(TAG, message)
@@ -118,8 +186,11 @@ class DetailMhsActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun refreshApp() {
         swipeToRefresh.setOnRefreshListener {
-            Toast.makeText(this, "Sudah di refresh", Toast.LENGTH_SHORT).show()
+            getDataFromApi()
+            setupRecyclerView()
+            getMhsDetail()
             swipeToRefresh.isRefreshing = false
+
         }
     }
 

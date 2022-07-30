@@ -15,6 +15,8 @@ import com.mahadalynj.appstor.ui.detail.DetailUstActivity
 import com.mahadalynj.appstor.ui.utility.lightStatusBar
 import com.mahadalynj.appstor.ui.utility.setfullScreen
 import kotlinx.android.synthetic.main.activity_list_ust.*
+import kotlinx.android.synthetic.main.activity_list_ust.swipeToRefresh
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +33,7 @@ class ListUstActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_ust)
 
         lightStatusBar(window)
-        setfullScreen(window)
+        //setfullScreen(window)
 
         apiClient = ApiClient()
         setupRecyclerView()
@@ -66,12 +68,14 @@ class ListUstActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<UstadzModel>, t: Throwable) {
                     printLog( t.toString() )
                     showLoading(false)
+                    refreshApp()
                 }
                 override fun onResponse(
                     call: Call<UstadzModel>,
                     response: Response<UstadzModel>
                 ) {
                     showLoading(false)
+                    refreshApp()
                     if (response.isSuccessful) {
                         count_list_ust.text = response.body()?.count.toString()
                         showResult( response.body()!! )
@@ -94,5 +98,12 @@ class ListUstActivity : AppCompatActivity() {
     private fun showResult(results: UstadzModel) {
         for (result in results.dataust) printLog( "nama: ${result.name}" )
         ustAdapter.setData( results.dataust )
+    }
+    private fun refreshApp() {
+        swipeToRefresh.setOnRefreshListener {
+            setupRecyclerView()
+            getDataFromApi()
+            swipeToRefresh.isRefreshing = false
+        }
     }
 }

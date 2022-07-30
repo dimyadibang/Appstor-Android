@@ -19,6 +19,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="7dp"
+                app:cardBackgroundColor="#FBFDDA">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:paddingHorizontal="5dp"
+                    android:fontFamily="sans-serif"
+                    android:text="List Data Kitab "
+                    android:textStyle="bold"
+                    android:textColor="#017C06"
+                    android:textSize="25sp" />
+
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/progressBar3"
@@ -33,6 +59,9 @@
                 android:id="@+id/rv_kitab"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbarSize="0dp"
+                android:paddingVertical="10dp"
                 tools:listitem="@layout/item_list_kitab"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

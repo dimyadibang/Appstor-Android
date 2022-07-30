@@ -10,7 +10,7 @@ import com.mahadalynj.appstor.data.model.SetoranModel
 import kotlinx.android.synthetic.main.item_setoran.view.*
 import kotlinx.android.synthetic.main.item_setoran_mhs.view.*
 
-class SetoranMhsAdapter (var results: ArrayList<SetoranModel.Result>):
+class SetoranMhsAdapter (var results: ArrayList<SetoranModel.Result>,val listener: SetoranMhsAdapter.OnAdapterListener):
     RecyclerView.Adapter<SetoranMhsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder (
@@ -25,6 +25,9 @@ class SetoranMhsAdapter (var results: ArrayList<SetoranModel.Result>):
         holder.view.awalan_setoran_mhs.text = result.halKitab.awalan
         holder.view.tv_hal_setoran_mhs.text = result.halKitab.halaman
         holder.view.tv_tgl_setoran_mhs.text = result.tanggal
+        holder.view.tv_nilai_setoran_mhs.text= result.nilai
+        holder.view.tv_ket_setoran_mhs.text = result.ketengan
+        holder.view.btn_delete_setoran.setOnClickListener { listener.onClick( result ) }
 
     }
 
@@ -34,6 +37,9 @@ class SetoranMhsAdapter (var results: ArrayList<SetoranModel.Result>):
         this.results.clear()
         this.results.addAll(data)
         notifyDataSetChanged()
+    }
+    interface OnAdapterListener {
+        fun onClick(results: SetoranModel.Result)
     }
 
 

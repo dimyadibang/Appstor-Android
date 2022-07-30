@@ -15,6 +15,8 @@ import com.mahadalynj.appstor.ui.detail.DetailMhsActivity
 import com.mahadalynj.appstor.ui.utility.lightStatusBar
 import com.mahadalynj.appstor.ui.utility.setfullScreen
 import kotlinx.android.synthetic.main.activity_list_mhs.*
+import kotlinx.android.synthetic.main.activity_list_mhs.swipeToRefresh
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +35,7 @@ class ListMhsActivity : AppCompatActivity() {
         apiClient = ApiClient()
 
         lightStatusBar(window)
-        setfullScreen(window)
+        //setfullScreen(window)
 
         setupRecyclerView()
         getDataFromApi()
@@ -49,7 +51,6 @@ class ListMhsActivity : AppCompatActivity() {
                             .putExtra("intent_name", results.name)
                             .putExtra("intent_jk", results.jk)
                             .putExtra("intent_status", results.status)
-                            .putExtra("intent_id", results.id.toString())
                             .putExtra("intent_ids", results.id.toString())
 
                     )
@@ -67,6 +68,7 @@ class ListMhsActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<MhSantriModel>, t: Throwable) {
                     printLog(t.toString())
                     showLoading(false)
+                    refreshApp()
                 }
 
                 override fun onResponse(
@@ -74,6 +76,7 @@ class ListMhsActivity : AppCompatActivity() {
                     response: Response<MhSantriModel>
                 ) {
                     showLoading(false)
+                    refreshApp()
                     if (response.isSuccessful) {
                         showResult2(response.body()!!)
                         count_list_mhs.text = response.body()?.count.toString()
@@ -95,5 +98,12 @@ class ListMhsActivity : AppCompatActivity() {
     private fun showResult2(a: MhSantriModel) {
         for (result1 in a.datasantri) printLog("nama: ${result1.name}")
         mhsAdapter.setData(a.datasantri)
+    }
+    private fun refreshApp() {
+        swipeToRefresh.setOnRefreshListener {
+            setupRecyclerView()
+            getDataFromApi()
+            swipeToRefresh.isRefreshing = false
+        }
     }
 }

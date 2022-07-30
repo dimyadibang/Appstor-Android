@@ -18,27 +18,21 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="2dp"
             android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView_ust"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:visibility="visible"
-                tools:src="@drawable/img_fotokosong"
-                 />
 
             <TextView
                 android:id="@+id/tv_nama_ust"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-
+                android:layout_marginStart="6dp"
                 android:layout_weight="5.5"
                 android:gravity="left|center"
                 android:padding="10dp"
+                android:textStyle="bold"
                 android:textSize="15sp"
                 android:text="Nama Ust"
-                android:textColor="@color/black" />
+                android:textColor="#1E1E1E" />
 
             <TextView
                 android:id="@+id/tv_nama_hp"
@@ -52,9 +46,9 @@
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
                 android:textColor="@color/black">
 
                 <TextView

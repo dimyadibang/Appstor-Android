@@ -1,10 +1,12 @@
 package com.mahadalynj.appstor.api
 
 import android.content.Context
+import com.mahadalynj.appstor.ui.adapter.SetoranMhsAdapter
 import com.mahadalynj.appstor.ui.login.LoginActivity
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 class ApiClient {
 
@@ -16,6 +18,7 @@ class ApiClient {
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://appstor.pythonanywhere.com/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create())
                 .client(okhttpClient(context))
                 .build()
 

@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.mahadalynj.appstor.R
 import com.mahadalynj.appstor.api.ApiClient
 import com.mahadalynj.appstor.data.model.*
@@ -15,19 +14,17 @@ import com.mahadalynj.appstor.data.profile.UserModel
 import com.mahadalynj.appstor.data.profile.helper.Constant
 import com.mahadalynj.appstor.data.profile.helper.PreferencesHelper
 import com.mahadalynj.appstor.ui.adapter.MainAdapter
+import com.mahadalynj.appstor.ui.detail.DetailMhsActivity
 import com.mahadalynj.appstor.ui.utility.lightStatusBar
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.System.load
 
 class MainActivity : AppCompatActivity(),View.OnClickListener  {
     private val TAG: String = "MainActivity"
 
     private lateinit var apiClient: ApiClient
-
     private lateinit var sessionManager: PreferencesHelper
     private lateinit var mainAdapter: MainAdapter
 
@@ -41,19 +38,15 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
         lightStatusBar(window)
         //setfullScreen(window)
         sessionManager = PreferencesHelper(this)
-
+        getUstadUser()
         setupRecyclerView()
         getDataFromApi()
         getCoutUst()
         getCoutMhs()
-        getUstadUser()
-
 
         move_activity_list_ust.setOnClickListener(this)
         move_activity_list_mhs.setOnClickListener(this)
-        icon_profile.setOnClickListener(this)
-
-
+        btn_profile.setOnClickListener(this)
 
     }
 
@@ -68,7 +61,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
                 val movelistMhs = Intent(this@MainActivity, ListMhsActivity::class.java)
                 startActivity(movelistMhs)
             }
-            R.id.icon_profile ->{
+            R.id.btn_profile ->{
                 val movePofile = Intent(this@MainActivity, ProfileActivity::class.java)
                 startActivity((movePofile))
             }
@@ -128,26 +121,17 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
         val user = sessionManager.getString(Constant.PREF_IS_ID)
         val parameters= HashMap<String, String>()
         parameters["user"] = "$user"
-        apiClient.getApiService(this).datausta(parameters)
+        apiClient.getApiService(this).dataustadzuser(parameters)
             .enqueue(object : Callback<UserModel>{
                 override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
                     val data = response.body()?.datauser?.let { ArrayList(it) }
                     val a = data?.get(0)
-
                     Log.e("email", data?.size.toString())
                     Log.e("a", a?.id.toString())
-                    Log.e("a", a?.name.toString())
+                    nm_user.text = a?.name.toString()
                     Log.e("a", a?.phone.toString())
                     Log.e("a", a?.email.toString())
                     val img = a?.profile_pic.toString()
-                    Picasso.get()
-                        .load("$img")
-                        .fit()
-                        .centerCrop()
-                        .into(icon_profile)
-
-
-
 
                 }
 
@@ -160,7 +144,16 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
     }
 
     private fun setupRecyclerView() {
-        mainAdapter = MainAdapter(arrayListOf())
+        mainAdapter = MainAdapter(arrayListOf(),object :MainAdapter.OnAdapterListener{
+            override fun onClick(results: MainModel.Result) {
+                startActivity(
+                    Intent(this@MainActivity, DetailMhsActivity::class.java)
+                        .putExtra("intent_ids", results.mahasantri)
+                )
+
+            }
+        }
+        )
         rv_setoran.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainAdapter
@@ -170,8 +163,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
     private fun getDataFromApi() {
         showLoading(true)
         refreshApp()
-
-
         apiClient.getApiService(this).data()
             .enqueue(object : Callback<MainModel> {
                 override fun onFailure(call: Call<MainModel>, t: Throwable) {
@@ -199,8 +190,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
 
     private fun showLoading(loading: Boolean) {
         when (loading) {
-            true -> progressBar.visibility = View.VISIBLE
-            false -> progressBar.visibility = View.GONE
+            true -> progressBarMain.visibility = View.VISIBLE
+            false -> progressBarMain.visibility = View.GONE
         }
     }
 
@@ -212,7 +203,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener  {
 
     private fun refreshApp() {
         swipeToRefresh.setOnRefreshListener {
-            Toast.makeText(this, "Sudah di refresh", Toast.LENGTH_SHORT).show()
+            getUstadUser()
+            setupRecyclerView()
+            getDataFromApi()
+            getCoutUst()
+            getCoutMhs()
             swipeToRefresh.isRefreshing = false
         }
     }

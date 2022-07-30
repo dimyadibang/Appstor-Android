@@ -24,13 +24,7 @@ class UstadzAdapter(var results: ArrayList<UstadzModel.DataUst>, val listener: O
         val result = results[position]
         holder.view.tv_nama_ust.text = result.name
         holder.view.tv_nama_hp.text = result.phone
-        Glide.with(holder.view)
-            .load(result.profile_pic)
-            .placeholder(R.drawable.img_fotokosong)
-            .error(R.drawable.img_fotokosong)
-            .centerCrop()
-            .into(holder.view.imageView_ust)
-        holder.view.setOnClickListener { listener.onClick( result) }
+        holder.view.bt_detail_ust.setOnClickListener { listener.onClick( result) }
     }
 
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view)

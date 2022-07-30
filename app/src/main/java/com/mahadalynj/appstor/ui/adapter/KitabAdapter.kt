@@ -22,11 +22,8 @@ class KitabAdapter(var results: ArrayList<KitabModel.Result>,val listener: OnAda
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = results[position]
         holder.view.tv_halaman_kitab.text = result.halaman
-        holder.view.tv_bab_kitab.text = result.bab
-        holder.view.tv_fashol_kitab.text = result.fasol
         holder.view.tv_awalan_kitab.text = result.awalan
-        holder.view.isi_kitab.text = result.isi
-        holder.view.btn_setorkan.setOnClickListener { listener.onClick( result ) }
+        holder.view.bt_detail_kitab.setOnClickListener { listener.onClick( result ) }
 
     }
 
